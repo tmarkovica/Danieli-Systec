@@ -1,0 +1,14 @@
+D:\DOTNET_repos\Daniely Systec\Task_002\bin\Debug\net6.0\Task_002.exe
+D:\DOTNET_repos\Daniely Systec\Task_002\bin\Debug\net6.0\Task_002.deps.json
+D:\DOTNET_repos\Daniely Systec\Task_002\bin\Debug\net6.0\Task_002.runtimeconfig.json
+D:\DOTNET_repos\Daniely Systec\Task_002\bin\Debug\net6.0\Task_002.dll
+D:\DOTNET_repos\Daniely Systec\Task_002\bin\Debug\net6.0\Task_002.pdb
+D:\DOTNET_repos\Daniely Systec\Task_002\obj\Debug\net6.0\Task_002.GeneratedMSBuildEditorConfig.editorconfig
+D:\DOTNET_repos\Daniely Systec\Task_002\obj\Debug\net6.0\Task_002.AssemblyInfoInputs.cache
+D:\DOTNET_repos\Daniely Systec\Task_002\obj\Debug\net6.0\Task_002.AssemblyInfo.cs
+D:\DOTNET_repos\Daniely Systec\Task_002\obj\Debug\net6.0\Task_002.csproj.CoreCompileInputs.cache
+D:\DOTNET_repos\Daniely Systec\Task_002\obj\Debug\net6.0\Task_002.dll
+D:\DOTNET_repos\Daniely Systec\Task_002\obj\Debug\net6.0\refint\Task_002.dll
+D:\DOTNET_repos\Daniely Systec\Task_002\obj\Debug\net6.0\Task_002.pdb
+D:\DOTNET_repos\Daniely Systec\Task_002\obj\Debug\net6.0\Task_002.genruntimeconfig.cache
+D:\DOTNET_repos\Daniely Systec\Task_002\obj\Debug\net6.0\ref\Task_002.dll
