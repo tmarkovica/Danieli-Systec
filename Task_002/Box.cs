@@ -2,7 +2,7 @@
 
 namespace Task_002;
 
-internal class Box
+public class Box
 {
     public int Length { get; private set; }
     public int Width { get; private set; }
@@ -44,6 +44,18 @@ internal class Box
 
     public bool CanPassedBoxBePlacedOnTop(Box boxOnTop)
     {
-        return (boxOnTop.Length <= Length && boxOnTop.Width <= Width);
+        bool statement = (boxOnTop.Length <= Length && boxOnTop.Width <= Width);
+        //Console.WriteLine($"Can box {boxOnTop} \tbe on top {this} \t? ==> {statement}");
+        return statement;
+    }
+
+    public static bool operator <=(Box box1, Box box2)
+    {
+        return (box1.Length <= box2.Length && box1.Width <= box2.Width);
+    }
+
+    public static bool operator >=(Box box1, Box box2)
+    {
+        return (box1.Length >= box2.Length && box1.Width >= box2.Width);
     }
 }

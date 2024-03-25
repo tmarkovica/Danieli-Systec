@@ -18,3 +18,4 @@ D:\DOTNET_repos\Daniely Systec\Task_003\obj\Debug\net6.0-windows\refint\Task_003
 D:\DOTNET_repos\Daniely Systec\Task_003\obj\Debug\net6.0-windows\Task_003.pdb
 D:\DOTNET_repos\Daniely Systec\Task_003\obj\Debug\net6.0-windows\Task_003.genruntimeconfig.cache
 D:\DOTNET_repos\Daniely Systec\Task_003\obj\Debug\net6.0-windows\ref\Task_003.dll
+D:\DOTNET_repos\Daniely Systec\Task_003\obj\Debug\net6.0-windows\Task_003.sourcelink.json

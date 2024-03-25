@@ -6,8 +6,10 @@
     xmlns:local="clr-namespace:Task_003"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="MainWindow"
-    Width="800"
-    Height="450"
+    Width="400"
+    Height="550"
+    MinWidth="400"
+    MinHeight="550"
     FontSize="22"
     mc:Ignorable="d">
     <Grid Margin="10">
@@ -27,21 +29,33 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <TextBox
-            x:Name="TextBoxResult"
+        <Border
             Grid.Row="0"
             Grid.ColumnSpan="5"
-            Margin="4"
-            Padding="10,10"
-            VerticalAlignment="Stretch"
+            Margin="5"
             BorderBrush="Black"
-            BorderThickness="2"
-            FontSize="28"
-            IsReadOnly="True"
-            Text="0"
-            TextAlignment="Right"
-            VerticalContentAlignment="Bottom"
-            TextWrapping="Wrap" />
+            BorderThickness="1">
+            <Grid Margin="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label
+                    x:Name="LabelStatement"
+                    Grid.Row="0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Stretch"
+                    FontSize="12" />
+
+                <Label
+                    x:Name="LabelResult"
+                    Grid.Row="1"
+                    HorizontalAlignment="Right"
+                    Content="0"
+                    FontSize="24"
+                    FontWeight="DemiBold" />
+            </Grid>
+        </Border>
 
         <Button
             Grid.Row="1"
@@ -64,6 +78,7 @@
         <Button
             Grid.Row="1"
             Grid.Column="3"
+            Click="CalculatorOperationButton_Click"
             Content="/"
             FontWeight="Bold" />
         <Button
@@ -71,8 +86,9 @@
             Grid.Row="1"
             Grid.RowSpan="2"
             Grid.Column="4"
+            Click="ButtonClear_Click"
             Content="C"
-            FontWeight="Bold" Click="ButtonClear_Click" />
+            FontWeight="Bold" />
 
         <Button
             Grid.Row="2"
@@ -95,6 +111,7 @@
         <Button
             Grid.Row="2"
             Grid.Column="3"
+            Click="CalculatorOperationButton_Click"
             Content="*"
             FontWeight="Bold" />
 
@@ -119,12 +136,14 @@
         <Button
             Grid.Row="3"
             Grid.Column="3"
+            Click="CalculatorOperationButton_Click"
             Content="-"
             FontWeight="Bold" />
         <Button
             Grid.Row="3"
             Grid.RowSpan="2"
             Grid.Column="4"
+            Click="CalculatorResultButton_Click"
             Content="="
             FontWeight="Bold" />
 
@@ -138,11 +157,13 @@
         <Button
             Grid.Row="4"
             Grid.Column="2"
+            Click="CalculatorDecimalPointButton_Click"
             Content="."
             FontWeight="Bold" />
         <Button
             Grid.Row="4"
             Grid.Column="3"
+            Click="CalculatorOperationButton_Click"
             Content="+"
             FontWeight="Bold" />
 

@@ -35,6 +35,12 @@ internal class XmasCard
         return row;
     }
 
+    private string TreeBaseRow(int rowLength)
+    {
+        string treeBase = new(' ', rowLength);
+        return treeBase.Remove(rowLength / 2, 1).Insert(rowLength / 2, "*");
+    }
+
     private string GenerateTree()
     {
         if (RowCount <= 1) return "*";
@@ -46,8 +52,7 @@ internal class XmasCard
         for (int i = 0; i < RowCount - 1; i++)
             sb.Insert(0, NewTreeRow(i) + "\n");
 
-        string treeBase = new(' ', rowLength);
-        sb.AppendLine(treeBase.Remove(rowLength / 2, 1).Insert(rowLength / 2, "*"));
+        sb.Append(TreeBaseRow(rowLength));
 
         return sb.ToString();
     }
@@ -55,11 +60,15 @@ internal class XmasCard
     public string GenerateCard()
     {
         StringBuilder sb = new();
+
         if (Header != string.Empty)
             sb.AppendLine(Header);
+
         sb.AppendLine(GenerateTree());
+
         if (Footer != string.Empty)
             sb.AppendLine(Footer);
+
         return sb.ToString();
     }
 }

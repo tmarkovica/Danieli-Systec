@@ -1,16 +1,22 @@
 ﻿namespace Task_002;
 
-internal class TaskSolution
+public class TaskSolution
 {
-    private readonly List<Box> _allBoxes;
+    private readonly BoxStack _stack;
 
-    public TaskSolution(List<Box> allBoxes)
+    public TaskSolution()
     {
-        _allBoxes = allBoxes;
+        _stack = new BoxStack(10);
+        Console.WriteLine("CREATED BOXES: ");
+        Console.WriteLine(_stack);
     }
 
-    public void FindSolution(ICombinationFinder strategy)
+    public void FindSolution(CombinationFinder strategy)
     {
-        strategy.FindCombination(new List<Box>(_allBoxes));
+        Console.WriteLine($"===============================================================");
+        Console.WriteLine($"\t\t\tTASK {strategy.TaskLabel()}");
+        Console.WriteLine($"===============================================================");
+
+        strategy.FindCombination(new BoxStack(_stack));
     }
 }
