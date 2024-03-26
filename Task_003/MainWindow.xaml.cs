@@ -8,7 +8,7 @@ namespace Task_003;
 /// </summary>
 public partial class MainWindow : Window
 {
-    private readonly Calculator _calculator;
+    private readonly Calculator.Calculator _calculator;
 
     public MainWindow()
     {
@@ -18,15 +18,13 @@ public partial class MainWindow : Window
 
     private void UpdateResultTextBox()
     {
-        //TextBoxResult.Text = _calculator.Result;
         LabelResult.Content = _calculator.Result;
-
         LabelStatement.Content = _calculator.MathStatement();
     }
 
     private void CalculatorNumberButton_Click(object sender, RoutedEventArgs e)
     {
-        _calculator.NumberInput(((Button)sender).Content.ToString()!);
+        _calculator.DigitInput(((Button)sender).Content.ToString()!);
         UpdateResultTextBox();
     }
 
@@ -38,7 +36,7 @@ public partial class MainWindow : Window
 
     private void CalculatorOperationButton_Click(object sender, RoutedEventArgs e)
     {
-        _calculator.SetOperation(((Button)sender).Content.ToString()![0]);
+        _calculator.OperationInput(((Button)sender).Content.ToString()![0]);
         UpdateResultTextBox();
     }
 
@@ -50,6 +48,19 @@ public partial class MainWindow : Window
 
     private void CalculatorDecimalPointButton_Click(object sender, RoutedEventArgs e)
     {
-        _calculator.PutDecimalPoint();
+        _calculator.DecimalPointInput();
+        UpdateResultTextBox();
+    }
+
+    private void ButtonOpenParentheses_Click(object sender, RoutedEventArgs e)
+    {
+        _calculator.OpenParanthesis();
+        UpdateResultTextBox();
+    }
+
+    private void ButtonCloseParentheses_Click(object sender, RoutedEventArgs e)
+    {
+        _calculator.CloseParanthesis();
+        UpdateResultTextBox();
     }
 }

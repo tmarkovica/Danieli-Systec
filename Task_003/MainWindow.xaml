@@ -84,10 +84,19 @@
         <Button
             x:Name="ButtonClear"
             Grid.Row="1"
-            Grid.RowSpan="2"
+            Grid.RowSpan="1"
             Grid.Column="4"
             Click="ButtonClear_Click"
             Content="C"
+            FontWeight="Bold" />
+
+        <Button
+            x:Name="ButtonParenthesesOpen"
+            Grid.Row="2"
+            Grid.RowSpan="1"
+            Grid.Column="4"
+            Click="ButtonOpenParentheses_Click"
+            Content="("
             FontWeight="Bold" />
 
         <Button
@@ -140,8 +149,16 @@
             Content="-"
             FontWeight="Bold" />
         <Button
+            x:Name="ButtonParenthesesClosed"
             Grid.Row="3"
-            Grid.RowSpan="2"
+            Grid.RowSpan="1"
+            Grid.Column="4"
+            Click="ButtonCloseParentheses_Click"
+            Content=")"
+            FontWeight="Bold" />
+        <Button
+            Grid.Row="4"
+            Grid.RowSpan="1"
             Grid.Column="4"
             Click="CalculatorResultButton_Click"
             Content="="
