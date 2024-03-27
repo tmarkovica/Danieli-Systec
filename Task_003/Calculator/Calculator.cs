@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using System.Windows;
 using Task_003.Calculator.Tokens;
 
 namespace Task_003.Calculator;
@@ -36,31 +35,17 @@ public class Calculator
         return sb.ToString();
     }
 
-    private void CalculateAndWithResultTokenReplace_OneOperandOnEachSideAndOperatorAtPosition(int i)
+    private void SolveOperationAndReplaceTokensWithResult(
+        List<ICalculatorToken> tokens, int i)
     {
         double result = Operator.Result(
-                            (Operand)CalculatorTokens[i - 1],
-                            (Operand)CalculatorTokens[i + 1],
-                            (Operator)CalculatorTokens[i]
+                            (Operand)tokens[i - 1],
+                            (Operand)tokens[i + 1],
+                            (Operator)tokens[i]
                         );
 
-        CalculatorTokens.RemoveRange(i - 1, 3);
-        CalculatorTokens.Insert(i - 1, new Operand(result));
-    }
-
-    private void SolveOperationsWithHigherPriority()
-    {
-        for (int i = 0; i < CalculatorTokens.Count; i++)
-        {
-            if (CalculatorTokens[i] is Operator)
-            {
-                if (CalculatorTokens[i].IsOperationWithPriority())
-                {
-                    CalculateAndWithResultTokenReplace_OneOperandOnEachSideAndOperatorAtPosition(i);
-                    i -= 2;
-                }
-            }
-        }
+        tokens.RemoveRange(i - 1, 3);
+        tokens.Insert(i - 1, new Operand(result));
     }
 
     private void SolveOperationsWithHigherPriority(List<ICalculatorToken> tokens)
@@ -71,14 +56,7 @@ public class Calculator
             {
                 if (tokens[i].IsOperationWithPriority())
                 {
-                    double result = Operator.Result(
-                            (Operand)tokens[i - 1],
-                            (Operand)tokens[i + 1],
-                            (Operator)tokens[i]
-                        );
-
-                    tokens.RemoveRange(i - 1, 3);
-                    tokens.Insert(i - 1, new Operand(result));
+                    SolveOperationAndReplaceTokensWithResult(tokens, i);
                     i -= 2;
                 }
             }
@@ -91,26 +69,7 @@ public class Calculator
         {
             if (tokens[i] is Operator)
             {
-                double result = Operator.Result(
-                            (Operand)tokens[i - 1],
-                            (Operand)tokens[i + 1],
-                            (Operator)tokens[i]
-                        );
-
-                tokens.RemoveRange(i - 1, 3);
-                tokens.Insert(i - 1, new Operand(result));
-                i -= 2;
-            }
-        }
-    }
-
-    private void SolveOperationsWithLowerPrioirty()
-    {
-        for (int i = 0; i < CalculatorTokens.Count; i++)
-        {
-            if (CalculatorTokens[i] is Operator)
-            {
-                CalculateAndWithResultTokenReplace_OneOperandOnEachSideAndOperatorAtPosition(i);
+                SolveOperationAndReplaceTokensWithResult(tokens, i);
                 i -= 2;
             }
         }
@@ -126,18 +85,10 @@ public class Calculator
         return tokens.First();
     }
 
-    public void CalculateResult()
+    private void SolveAllParanthesesFirst()
     {
-        if (AreAllParenthesesClosed() == false) return;
-
-        if (CalculatorTokens.Last() is Operator)
-        {
-            CalculatorTokens.Add(RefCurrentNumber);
-            RefCurrentNumber = new();
-        }
-
         (int indexOfOpen, int indexOfClosing)[] paranthesesPairs =
-            Task_003.Calculator.Tokens.Parentheses.FindAllParanthesesPairPositions(CalculatorTokens);             
+            Task_003.Calculator.Tokens.Parentheses.FindAllParanthesesPairPositions(CalculatorTokens);
 
         for (int i = paranthesesPairs.Length - 1; i >= 0; i--)
         {
@@ -148,7 +99,6 @@ public class Calculator
 
             Tokens.Parentheses.RemoveParanthesesFromStartAndEndToHaveExpressionOnly(expressionWParantheses);
 
-            
             CalculatorTokens.RemoveRange(
                     paranthesesPairs[i].indexOfOpen,
                     paranthesesPairs[i].indexOfClosing - paranthesesPairs[i].indexOfOpen + 1
@@ -159,16 +109,23 @@ public class Calculator
                 SolveExpression_GetResult(expressionWParantheses)
                 );
         }
+    }
 
-        while (CalculatorTokens.Count > 1)
-        {           
-            SolveOperationsWithHigherPriority();
-            SolveOperationsWithLowerPrioirty();
+    public void CalculateResult()
+    {
+        if (AreAllParenthesesClosed() == false) return;
+
+        if (CalculatorTokens.Last() is Operator)
+        {
+            CalculatorTokens.Add(RefCurrentNumber);
+            RefCurrentNumber = new();
         }
 
-        double temp = CalculatorTokens.First().TokenValue;
+        SolveAllParanthesesFirst();
+
+        ICalculatorToken resultOfRemainingExpression = SolveExpression_GetResult(CalculatorTokens);
         Reset();
-        _Result = temp;
+        _Result = resultOfRemainingExpression.TokenValue;
     }
 
     public void OperationInput(char operatorSymbol)
